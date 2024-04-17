@@ -5,6 +5,8 @@
 SNAP_PATH="/home/ubuntu/snapshots/emoney"
 LOG_PATH="/home/ubuntu/snapshots/logs/emoney_log.txt"
 DATA_PATH="/home/ubuntu/.emd/data/"
+PARENT_DIR="/home/ubuntu/.emd" 
+DATA_DIR_NAME="data" 
 SERVICE_NAME="emd.service"
 RPC_ADDRESS="http://localhost:36647"
 
@@ -32,7 +34,7 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     echo $? >> ${LOG_PATH}
 
     log_this "Creating new snapshot"
-    tar cf ${HOME}/${SNAP_NAME} -C ${DATA_PATH} data
+    tar -cf ${HOME}/${SNAP_NAME} -C ${PARENT_DIR} ${DATA_DIR_NAME}
     lz4 ${HOME}/${SNAP_NAME} ${HOME}/${SNAP_NAME}.lz4
     rm ${HOME}/${SNAP_NAME}  # Clean up the uncompressed tar file
     log_this "Snapshot compressed with lz4."

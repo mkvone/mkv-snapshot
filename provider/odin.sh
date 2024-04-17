@@ -3,6 +3,7 @@
 # Configuration variables
 
 SNAP_PATH="/home/ubuntu/snapshots/odin"
+
 LOG_PATH="/home/ubuntu/snapshots/logs/odin_log.txt"
 DATA_PATH="/home/ubuntu/.odin/data/"
 SERVICE_NAME="odin.service"
