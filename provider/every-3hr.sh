@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the directory where your scripts are located
-SCRIPT_DIR="/home/ubuntu/mkv-snapshot"
+SCRIPT_DIR="$HOME/mkv-snapshot/provider"
 
 # Change directory
 cd "$SCRIPT_DIR" || exit
