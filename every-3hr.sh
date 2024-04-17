@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the directory where your scripts are located
-SCRIPT_DIR="~/mkv-snapshot"
+SCRIPT_DIR="/home/ubuntu/mkv-snapshot"
 
 # Check if the directory exists
 if [ -d "$SCRIPT_DIR" ]; then
