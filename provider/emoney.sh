@@ -32,7 +32,7 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     echo $? >> ${LOG_PATH}
 
     log_this "Creating new snapshot"
-    tar cf ${HOME}/${SNAP_NAME} -C ${DATA_PATH} .
+    tar cf ${HOME}/${SNAP_NAME} -C ${DATA_PATH} data
     lz4 ${HOME}/${SNAP_NAME} ${HOME}/${SNAP_NAME}.lz4
     rm ${HOME}/${SNAP_NAME}  # Clean up the uncompressed tar file
     log_this "Snapshot compressed with lz4."
