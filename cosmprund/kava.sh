@@ -28,8 +28,14 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     echo $? >> ${LOG_PATH}
 
     log_this "Pruning data"
-    sudo docker run -v ${DATA_PATH}:${DATA_PATH} cosmprund prune ${DATA_PATH}
+    PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}:${DATA_PATH} cosmprund prune ${DATA_PATH} 2>&1)
+    log_this "$PRUNE_OUTPUT"
     log_this "Finish pruning"
+
+    SNAPSHOT_DIR="${DATA_PATH}snapshots"
+    log_this "Cleaning up old files in the snapshot directory, except metadata.db"
+    find ${SNAPSHOT_DIR} -type f ! -name 'metadata.db' -exec rm -v {} + 2>&1 | tee -a ${LOG_PATH}
+    log_this "Cleanup complete"
 
     log_this "Starting ${SERVICE_NAME}"
     sudo systemctl start ${SERVICE_NAME}
