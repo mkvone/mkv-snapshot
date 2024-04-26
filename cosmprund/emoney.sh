@@ -10,7 +10,6 @@ CLI_COMMAND="emd"
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
 
 LOG_PATH="/home/ubuntu/snapshots/logs/cosmprund/emoney_log.txt"
-mkdir -p ${SNAP_PATH}
 mkdir -p $(dirname ${LOG_PATH}) 
 
 now_date() {
