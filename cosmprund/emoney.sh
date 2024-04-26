@@ -37,7 +37,7 @@ if [[ "$CATCHING_UP" == "false" ]]; then
 
     SNAPSHOT_DIR="${DATA_PATH}snapshots"
     log_this "Cleaning up old files in the snapshot directory, except metadata.db"
-    find ${SNAPSHOT_DIR} -type f ! -name 'metadata.db' -exec rm -v {} + 2>&1 | tee -a ${LOG_PATH}
+    find ${SNAPSHOT_DIR} -type f ! -name 'metadata.db' -exec rm -rf {} + 2>&1 | tee -a ${LOG_PATH}
     log_this "Cleanup complete"
 
     log_this "Starting ${SERVICE_NAME}"
