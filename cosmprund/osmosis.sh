@@ -48,3 +48,5 @@ if [[ "$CATCHING_UP" == "false" ]]; then
 else
     log_this "Node is still catching up. Snapshot creation skipped."
 fi
+
+

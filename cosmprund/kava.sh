@@ -8,7 +8,7 @@ DATA_DIR_NAME="data"
 SERVICE_NAME="kava.service"
 RPC_ADDRESS="http://localhost:36657"
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
-
+A=whoami
 LOG_PATH="/home/ubuntu/snapshots/logs/cosmprund/kava_log.txt"
 mkdir -p $(dirname ${LOG_PATH}) 
 now_date() {
@@ -38,7 +38,7 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     log_this "Cleaning up snapshot directories that are numerically named"
     find ${SNAPSHOT_DIR} -maxdepth 1 -type d -regex ".*/[0-9]+" -exec rm -rv {} + 2>&1 | tee -a ${LOG_PATH}
     log_this "Numerical directories cleanup complete"
-    sudo chown -R ubuntu:ubuntu ${DATA_PATH}application.db/LOG
+    sudo chown -R $(whoami):$(whoami) ${DATA_PATH}application.db/LOG
     log_this "Starting ${SERVICE_NAME}"
     sudo systemctl start ${SERVICE_NAME}
     echo $? >> ${LOG_PATH}
