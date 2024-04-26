@@ -2,6 +2,7 @@
 
 # Configuration variables
 DATA_PATH="/home/ubuntu/.odin/data/"
+SNAPSHOT_DIR="${DATA_PATH}snapshots"
 PARENT_DIR="/home/ubuntu/.odin" 
 DATA_DIR_NAME="data" 
 SERVICE_NAME="odin.service"
@@ -34,10 +35,10 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     log_this "Finish pruning"
     sudo docker container prune -f
 
-    SNAPSHOT_DIR="${DATA_PATH}snapshots"
-    log_this "Cleaning up old files in the snapshot directory, except metadata.db"
-    find ${SNAPSHOT_DIR} -type f ! -name 'metadata.db' -exec rm -v {} + 2>&1 | tee -a ${LOG_PATH}
-    log_this "Cleanup complete"
+    
+    log_this "Cleaning up snapshot directories that are numerically named"
+    find ${SNAPSHOT_DIR} -maxdepth 1 -type d -regex ".*/[0-9]+" -exec rm -rv {} + 2>&1 | tee -a ${LOG_PATH}
+    log_this "Numerical directories cleanup complete"
 
     log_this "Starting ${SERVICE_NAME}"
     sudo systemctl start ${SERVICE_NAME}
