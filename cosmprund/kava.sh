@@ -31,6 +31,7 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}:${DATA_PATH} cosmprund prune ${DATA_PATH} 2>&1)
     log_this "$PRUNE_OUTPUT"
     log_this "Finish pruning"
+    sudo docker container prune -f
 
     SNAPSHOT_DIR="${DATA_PATH}snapshots"
     log_this "Cleaning up old files in the snapshot directory, except metadata.db"
