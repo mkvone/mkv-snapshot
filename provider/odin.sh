@@ -23,7 +23,7 @@ mkdir -p $(dirname ${LOG_PATH})  # Creates the log directory if it doesn't exist
 
 # Function to get current time in a specific format
 now_date() {
-    log_this -n $(TZ=":Europe/Moscow" date '+%Y-%m-%d_%H:%M:%S')
+    echo -n $(TZ=":Europe/Moscow" date '+%Y-%m-%d_%H:%M:%S')
 }
 
 # Logging function
