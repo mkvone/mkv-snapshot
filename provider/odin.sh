@@ -13,7 +13,7 @@ RPC_ADDRESS="http://localhost:26657"
 # Check if the node is fully synced
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
 CHAIN_ID=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.node_info.network)
-SNAP_NAME=$(log_this "${CHAIN_ID}_$(date '+%Y%m%d_%H%M').tar")
+SNAP_NAME=$(echo "${CHAIN_ID}_$(date '+%Y%m%d_%H%M').tar")
 OLD_SNAP=$(ls ${SNAP_PATH} | egrep -o "${CHAIN_ID}.*tar.lz4")
 
 
