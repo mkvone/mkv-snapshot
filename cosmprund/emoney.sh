@@ -24,6 +24,7 @@ log_this() {
 }
 
 if [[ "$CATCHING_UP" == "false" ]]; then
+    log_this "Start\n---------------------------------------------------------\n"
     log_this "Node is fully synced."
 
     log_this "Stopping ${SERVICE_NAME}"
@@ -54,7 +55,7 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     
     DISK_USAGE=$(du -hs ${DATA_PATH})
     log_this "Disk usage: $DISK_USAGE"
-    log_this "Done\n---------------------------\n"
+    log_this "Done\n---------------------------------------------------------\n"
 else
     log_this "Node is still catching up. Snapshot creation skipped."
 fi
