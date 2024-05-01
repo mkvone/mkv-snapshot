@@ -37,7 +37,9 @@ if [[ "$CATCHING_UP" == "false" ]]; then
 
     
     log_this "Cleaning up snapshot directories that are numerically named"
-    find ${SNAPSHOT_DIR} -maxdepth 1 -type d -regex ".*/[0-9]+" -exec rm -rv {} + 2>&1 | tee -a ${LOG_PATH}
+    CLEANUP_OUTPUT=$(find ${SNAPSHOT_DIR} -maxdepth 1 -type d -regex ".*/[0-9]+" -exec rm -rv {} + 2>&1)
+    log_this "${CLEANUP_OUTPUT}"
+    #find ${SNAPSHOT_DIR} -maxdepth 1 -type d -regex ".*/[0-9]+" -exec rm -rv {} + 2>&1 | tee -a ${LOG_PATH}
     log_this "Numerical directories cleanup complete"
 
     log_this "Starting ${SERVICE_NAME}"
