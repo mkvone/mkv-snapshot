@@ -47,8 +47,9 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     CLEANUP_OUTPUT=$(find ${SNAPSHOT_DIR} -maxdepth 1 -type d -regex ".*/[0-9]+" -exec rm -rv {} + 2>&1)
     log_this "${CLEANUP_OUTPUT}"
     log_this "Numerical directories cleanup complete"
-
-    log_this "Starting ${SERVICE_NAME}"
+    sudo chown -R $(whoami):$(whoami) ${DATA_PATH}application.db/LOG
+    
+    
     sudo systemctl start ${SERVICE_NAME}
     SERVICE_START_STATUS=$?
     log_this "Service start status: $SERVICE_START_STATUS"
