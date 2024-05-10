@@ -47,7 +47,8 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     log_this "Numerical directories cleanup complete"
     sudo chown -R $(whoami):$(whoami) ${DATA_PATH}application.db/LOG
     sudo chown -R $(whoami):$(whoami) ${DATA_PATH}blockstore.db/LOG
-
+    rm -rf ${DATA_PATH}tx_index.db
+    
     log_this "Starting ${SERVICE_NAME}"
     sudo systemctl start ${SERVICE_NAME}
     SERVICE_START_STATUS=$?

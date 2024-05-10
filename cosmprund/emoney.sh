@@ -48,7 +48,8 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     log_this "${CLEANUP_OUTPUT}"
     log_this "Numerical directories cleanup complete"
     sudo chown -R $(whoami):$(whoami) ${DATA_PATH}application.db/LOG
-    
+    rm -rf ${DATA_PATH}tx_index.db
+
     
     sudo systemctl start ${SERVICE_NAME}
     SERVICE_START_STATUS=$?
