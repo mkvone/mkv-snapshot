@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the directory where your scripts are located
-SCRIPT_DIR="$HOME/node/snapshots"
+SCRIPT_DIR="$HOME/mkv-snapshot/snapshots"
 
 # Change directory
 cd "$SCRIPT_DIR" || exit
