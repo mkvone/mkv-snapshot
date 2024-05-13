@@ -11,8 +11,9 @@ SERVICE_NAME="kava.service"
 RPC_ADDRESS="http://localhost:36657"
 # Check if the node is fully synced
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
+HEIGHT=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.latest_block_height)
 CHAIN_ID=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.node_info.network)
-SNAP_NAME=$(echo "${CHAIN_ID}_$(date '+%Y%m%d_%H%M').tar")
+SNAP_NAME="${CHAIN_ID}_$(date '+%Y%m%d_%H%M')_${HEIGHT}.tar"
 OLD_SNAP=$(ls ${SNAP_PATH} | egrep -o "${CHAIN_ID}.*tar.lz4")
 # Ensure necessary directories exist
 mkdir -p ${SNAP_PATH}
