@@ -10,7 +10,6 @@ cd "$SCRIPT_DIR" || exit
 SCRIPTS=(
     "emoney.sh"
     "kava.sh"
-    "kichain.sh"
     "odin.sh"
 )
 
