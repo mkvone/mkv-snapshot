@@ -31,7 +31,7 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     log_this "Service stop status: $SERVICE_STOP_STATUS"
 
     log_this "Pruning data"
-    PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}:${DATA_PATH} cosmprund prune ${DATA_PATH} --blocks 5 --versions 5 2>&1)
+    PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}:${DATA_PATH} cosmprund prune ${DATA_PATH} 2>&1)
     log_this "$PRUNE_OUTPUT"
     log_this "Finish pruning"
     
