@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Configuration variables
+EMD_HOME="$HOME/.odin"
+CONFIG_PATH="${EMD_HOME}/config"
 SERVICE_NAME="odin.service"
 RPC_ADDRESS="https://odin-rpc.polkachu.com:443"
 RPC_SERVERS="https://odin.rpc.m.stavr.tech:443,https://rpc.odinprotocol.io:443,https://odin-rpc.lavenderfive.com:443,https://odin-mainnet-rpc.autostake.com:443"

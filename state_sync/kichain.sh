@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Configuration variables
+EMD_HOME="$HOME/.kid"
+CONFIG_PATH="${EMD_HOME}/config"
 SERVICE_NAME="kid.service"
 RPC_ADDRESS="https://rpc.kichain.chaintools.tech:443"
 RPC_SERVERS="https://kichain-rpc.polkachu.com:443,https://rpc-mainnet.blockchain.ki:443,https://kichain-rpc.polkachu.com:443,https://rpc-kichain-ia.cosmosia.notional.ventures:443,https://kichain-mainnet-rpc.autostake.com:443,https://kichain-rpc.lavenderfive.com:443"
