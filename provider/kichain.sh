@@ -67,6 +67,6 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     du -hs ${SNAP_PATH} | tee -a ${LOG_PATH}
     log_this "Done\n---------------------------\n"
 else
-    bash ${STATE_PATH}
+    sudo systemctl restart ${SERVICE_NAME}
     log_this "Node is still catching up. Snapshot creation skipped."
 fi
