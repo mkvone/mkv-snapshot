@@ -23,7 +23,7 @@ log_this() {
 }
 
 # Main execution
-log_this "Start\n---------------------------------------------------------\n"
+log_this "Start\n"
 log_this "Stopping ${SERVICE_NAME}"
 sudo systemctl stop ${SERVICE_NAME}
 SERVICE_STOP_STATUS=$?
