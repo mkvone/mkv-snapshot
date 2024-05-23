@@ -1,6 +1,5 @@
 sudo systemctl stop kids
-kid tendermint unsafe-reset-all --keep-addr-book --home /home/ubuntu/.kid/sentry1
-
+rm -rf ~/.kid/sentry1/data/*
 SNAP_NAME=$(curl -s https://snapshots.mkv.one/kichain/ | \
     awk -F'"' '/href=".*kichain.*\.tar\.lz4"/ {print $2}' | \
     sed 's/^\.\///' | \

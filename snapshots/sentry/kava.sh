@@ -1,6 +1,6 @@
 sudo apt-get install wget liblz4-tool aria2 -y
 sudo systemctl stop kavas 
-kava tendermint unsafe-reset-all --keep-addr-book --home /home/ubuntu/.kava/sentry1
+rm -rf ~/.kava/sentry1/data/*
 cd ~/.kava/
 SNAP_NAME=$(curl -s https://snapshots.mkv.one/kava/ | \
     awk -F'"' '/href=".*kava.*\.tar\.lz4"/ {print $2}' | \

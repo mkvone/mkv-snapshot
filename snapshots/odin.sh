@@ -1,5 +1,5 @@
 sudo systemctl stop odin
-odind tendermint unsafe-reset-all --keep-addr-book
+rm -rf ~/.odin/data/*
 SNAP_NAME=$(curl -s https://snapshots.mkv.one/odin/ | \
     awk -F'"' '/href=".*odin.*\.tar\.lz4"/ {print $2}' | \
     sed 's/^\.\///' | \
