@@ -4,6 +4,7 @@
 EMD_HOME="$HOME/.odin"
 CONFIG_PATH="${EMD_HOME}/config"
 SERVICE_NAME="odin.service"
+DATA_PATH="${EMD_HOME}/data"
 RPC_ADDRESS="https://odin-rpc.polkachu.com:443"
 RPC_SERVERS="https://odin.rpc.m.stavr.tech:443,https://rpc.odinprotocol.io:443,https://odin-rpc.lavenderfive.com:443,https://odin-mainnet-rpc.autostake.com:443"
 SNAPSHOT_DIR="$HOME/snapshots/logs"
@@ -28,8 +29,13 @@ sudo systemctl stop ${SERVICE_NAME}
 SERVICE_STOP_STATUS=$?
 log_this "Service stop status: $SERVICE_STOP_STATUS"
 
-log_this "Resetting emd"
-odind tendermint unsafe-reset-all --keep-addr-book
+log_this "Backing up address book"
+cp ${ADDRBOOK_JSON} ${ADDRBOOK_JSON}.bak
+
+log_this "Resetting data file"
+cp ${DATA_PATH}/priv_validator_state.json ${EMD_HOME}/priv_validator_state.json.bak
+rm -rf ${DATA_PATH}/*
+mv ${EMD_HOME}/priv_validator_state.json.bak ${DATA_PATH}/priv_validator_state.json
 
 LATEST_HEIGHT=$(curl -s $RPC_ADDRESS/block | jq -r .result.block.header.height)
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000))
@@ -40,6 +46,8 @@ s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$RPC_SERVERS,$RPC_SERVERS\"| ; 
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" ${CONFIG_PATH}/config.toml
 
+log_this "Restoring address book"
+cp ${ADDRBOOK_JSON}.bak ${ADDRBOOK_JSON}
 
 log_this "Starting ${SERVICE_NAME}"
 sudo systemctl start ${SERVICE_NAME}

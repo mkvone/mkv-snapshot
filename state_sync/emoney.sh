@@ -4,6 +4,7 @@
 EMD_HOME="$HOME/.emd"
 CONFIG_PATH="${EMD_HOME}/config"
 ADDRBOOK_JSON="${CONFIG_PATH}/addrbook.json"
+DATA_PATH="${EMD_HOME}/data"
 SERVICE_NAME="emd.service"
 RPC_ADDRESS="https://emoney.validator.network:443"
 RPC_SERVERS="https://rpc-emoney.keplr.app:443,https://emoney.validator.network:443,https://rpc.emoney.badgerbite.xyz:443,https://rpc-emoney-ia.cosmosia.notional.ventures:443,https://rpc.emoney.freak12techno.io:443,https://e-money-rpc.ibs.team:443,https://rpc-emoney.goldenratiostaking.net:443,https://rpc.emoney.bh.rocks:443"
@@ -32,8 +33,10 @@ log_this "Service stop status: $SERVICE_STOP_STATUS"
 log_this "Backing up address book"
 cp ${ADDRBOOK_JSON} ${ADDRBOOK_JSON}.bak
 
-log_this "Resetting emd"
-emd unsafe-reset-all
+log_this "Resetting data file"
+cp ${DATA_PATH}/priv_validator_state.json ${EMD_HOME}/priv_validator_state.json.bak
+rm -rf ${DATA_PATH}/*
+mv ${EMD_HOME}/priv_validator_state.json.bak ${DATA_PATH}/priv_validator_state.json
 
 LATEST_HEIGHT=$(curl -s $RPC_ADDRESS/block | jq -r .result.block.header.height)
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000))
