@@ -13,7 +13,7 @@ HEIGHT=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.latest_block_he
 CHAIN_ID=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.node_info.network)
 SNAP_NAME="${CHAIN_ID}_$(date '+%Y%m%d_%H%M')_${HEIGHT}.tar"
 OLD_SNAP=$(ls ${SNAP_PATH} | egrep -o "${CHAIN_ID}.*tar.lz4" || echo "")
-STATE_PATH= "/home/ubuntu/mkv-snapshot/state_sync/emoney.sh"
+# STATE_PATH= "/home/ubuntu/mkv-snapshot/state_sync/emoney.sh"
 # Ensure necessary directories exist
 mkdir -p ${SNAP_PATH}
 mkdir -p $(dirname ${LOG_PATH})  # Creates the log directory if it doesn't exist
