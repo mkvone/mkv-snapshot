@@ -7,7 +7,7 @@ ADDRBOOK_JSON="${CONFIG_PATH}/addrbook.json"
 DATA_PATH="${EMD_HOME}/data"
 SERVICE_NAME="emd.service"
 RPC_ADDRESS="https://emoney.validator.network:443"
-RPC_SERVERS="https://rpc-emoney.keplr.app:443,https://emoney.validator.network:443,https://rpc.emoney.badgerbite.xyz:443,https://rpc-emoney-ia.cosmosia.notional.ventures:443,https://rpc.emoney.freak12techno.io:443,https://e-money-rpc.ibs.team:443,https://rpc-emoney.goldenratiostaking.net:443,https://rpc.emoney.bh.rocks:443"
+RPC_SERVERS="https://emoney.validator.network:443,https://rpc-emoney.mkv.one:443,https://rpc-emoney-ia.cosmosia.notional.ventures:443"
 SNAPSHOT_DIR="$HOME/snapshots/logs"
 LOG_PATH="${SNAPSHOT_DIR}/state_sync/emd_log.txt"
 mkdir -p $(dirname ${LOG_PATH})
