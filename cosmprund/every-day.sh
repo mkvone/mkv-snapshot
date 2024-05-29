@@ -9,9 +9,9 @@ cd "$SCRIPT_DIR" || exit
 # List of scripts to run
 SCRIPTS=(
     "emoney.sh"
-    "kava.sh"
-    "kichain.sh"
-    "odin.sh"
+    # "kava.sh"
+    # "kichain.sh"
+    # "odin.sh"
 )
 
 # Loop through each script and execute it
