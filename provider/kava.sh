@@ -12,10 +12,10 @@ RPC_ADDRESS="http://localhost:36657"
 # Check if the node is fully synced
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
 HEIGHT=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.latest_block_height)
-CHAIN_ID=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.node_info.network)
-SNAP_NAME="${CHAIN_ID}_$(date '+%Y%m%d_%H%M')_${HEIGHT}.tar"
-OLD_SNAP=$(ls ${SNAP_PATH} | egrep -o "${CHAIN_ID}.*tar.lz4")
-
+CHAIN_ID="kava"
+SNAP_NAME="${CHAIN_ID}_${HEIGHT}.tar"
+OLD_SNAP=$(ls ${SNAP_PATH} | egrep -o "${CHAIN_ID}.*tar.lz4" || echo "")
+# STATE_PATH= "/home/ubuntu/mkv-snapshot/state_sync/emoney.sh"
 # Ensure necessary directories exist
 mkdir -p ${SNAP_PATH}
 mkdir -p $(dirname ${LOG_PATH})  # Creates the log directory if it doesn't exist
@@ -30,6 +30,8 @@ log_this() {
     local logging="$@"
     printf "|$(now_date)| $logging\n" | tee -a ${LOG_PATH}
 }
+
+# Check if the node is fully synced
 
 
 if [[ "$CATCHING_UP" == "false" ]]; then

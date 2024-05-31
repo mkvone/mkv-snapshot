@@ -13,12 +13,10 @@ RPC_ADDRESS="http://localhost:26657"
 # Check if the node is fully synced
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
 HEIGHT=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.latest_block_height)
-CHAIN_ID=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.node_info.network)
-SNAP_NAME="${CHAIN_ID}_$(date '+%Y%m%d_%H%M')_${HEIGHT}.tar"
-OLD_SNAP=$(ls ${SNAP_PATH} | egrep -o "${CHAIN_ID}.*tar.lz4")
-# STATE_PATH= "/home/ubuntu/mkv-snapshot/state_sync/odin.sh"
-
-
+CHAIN_ID="odin"
+SNAP_NAME="${CHAIN_ID}_${HEIGHT}.tar"
+OLD_SNAP=$(ls ${SNAP_PATH} | egrep -o "${CHAIN_ID}.*tar.lz4" || echo "")
+# STATE_PATH= "/home/ubuntu/mkv-snapshot/state_sync/emoney.sh"
 # Ensure necessary directories exist
 mkdir -p ${SNAP_PATH}
 mkdir -p $(dirname ${LOG_PATH})  # Creates the log directory if it doesn't exist
@@ -34,13 +32,15 @@ log_this() {
     printf "|$(now_date)| $logging\n" | tee -a ${LOG_PATH}
 }
 
+# Check if the node is fully synced
+
 
 if [[ "$CATCHING_UP" == "false" ]]; then
     log_this "Node is fully synced."
 
     log_this "Stopping ${SERVICE_NAME}"
     sudo systemctl stop ${SERVICE_NAME}
-    log_this $? >> ${LOG_PATH}
+    echo $? >> ${LOG_PATH}
 
     log_this "Creating new snapshot"
     tar -cf ${HOME}/${SNAP_NAME} -C ${PARENT_DIR} ${DATA_DIR_NAME}
@@ -50,7 +50,7 @@ if [[ "$CATCHING_UP" == "false" ]]; then
 
     log_this "Starting ${SERVICE_NAME}"
     sudo systemctl start ${SERVICE_NAME}
-    log_this $? >> ${LOG_PATH}
+    echo $? >> ${LOG_PATH}
 
     log_this "Moving new snapshot to ${SNAP_PATH}"
     mv ${HOME}/${SNAP_NAME}.lz4 ${SNAP_PATH} &>> ${LOG_PATH}
