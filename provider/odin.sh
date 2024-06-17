@@ -2,8 +2,8 @@
 
 # Configuration variables
 
-SNAP_PATH="/home/ubuntu/snapshots/odin"
-LOG_PATH="/home/ubuntu/snapshots/logs/odin_log.txt"
+SNAP_PATH="/home/ubuntu/snapshots/mainnet/odin"
+LOG_PATH="/home/ubuntu/snapshots/mainnet/logs/odin_log.txt"
 DATA_PATH="/home/ubuntu/.odin/data/"
 PARENT_DIR="/home/ubuntu/.odin" 
 DATA_DIR_NAME="data" 

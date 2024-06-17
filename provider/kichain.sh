@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Configuration variables
-SNAP_PATH="/home/ubuntu/snapshots/kichain"
-LOG_PATH="/home/ubuntu/snapshots/logs/kichain_log.txt"
+SNAP_PATH="/home/ubuntu/snapshots/mainnet/kichain"
+LOG_PATH="/home/ubuntu/snapshots/mainnet/logs/kichain_log.txt"
 DATA_PATH="/home/ubuntu/.kid/data/"
 PARENT_DIR="/home/ubuntu/.kid" 
 DATA_DIR_NAME="data" 

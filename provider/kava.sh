@@ -2,8 +2,8 @@
 
 # Configuration variables
 
-SNAP_PATH="/home/ubuntu/snapshots/kava"
-LOG_PATH="/home/ubuntu/snapshots/logs/kava_log.txt"
+SNAP_PATH="/home/ubuntu/snapshots/mainnet/kava"
+LOG_PATH="/home/ubuntu/snapshots/mainnet/logs/kava_log.txt"
 DATA_PATH="/home/ubuntu/.kava/data/"
 PARENT_DIR="/home/ubuntu/.kava" 
 DATA_DIR_NAME="data" 

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Configuration variables
-SNAP_PATH="/home/ubuntu/snapshots/emoney"
-LOG_PATH="/home/ubuntu/snapshots/logs/emoney_log.txt"
+SNAP_PATH="/home/ubuntu/snapshots/mainnet/emoney"
+LOG_PATH="/home/ubuntu/snapshots/mainnet/logs/emoney_log.txt"
 DATA_PATH="/home/ubuntu/.emd/data/"
 PARENT_DIR="/home/ubuntu/.emd"
 DATA_DIR_NAME="data"
