@@ -8,8 +8,8 @@ DATA_PATH="${EMD_HOME}/data"
 
 RPC_ADDRESS="https://rpc.kichain.chaintools.tech:443"
 RPC_SERVERS="https://kichain-rpc.polkachu.com:443,https://rpc-mainnet.blockchain.ki:443,https://kichain-rpc.polkachu.com:443,https://rpc-kichain-ia.cosmosia.notional.ventures:443,https://kichain-mainnet-rpc.autostake.com:443,https://kichain-rpc.lavenderfive.com:443"
-SNAPSHOT_DIR="$HOME/snapshots/logs"
-LOG_PATH="${SNAPSHOT_DIR}/state_sync/kid_log.txt"
+LOG_PATH="/home/ubuntu/snapshots/mainnet/logs/state_sync/kid_log.txt"
+
 mkdir -p $(dirname ${LOG_PATH})
 
 # Helper function to get current date in a specific format

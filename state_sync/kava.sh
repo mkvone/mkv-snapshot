@@ -9,7 +9,7 @@ SERVICE_NAME="kava.service"
 RPC_ADDRESS="http://localhost:36657"
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
 A=whoami
-LOG_PATH="/home/ubuntu/snapshots/logs/cosmprund/kava_log.txt"
+LOG_PATH="/home/ubuntu/snapshots/mainnet/logs/state_sync/kava_log.txt"
 mkdir -p $(dirname ${LOG_PATH}) 
 now_date() {
     echo -n $(TZ=":Europe/Moscow" date '+%Y-%m-%d_%H:%M:%S')

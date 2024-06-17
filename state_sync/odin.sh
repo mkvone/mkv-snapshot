@@ -7,8 +7,8 @@ SERVICE_NAME="odin.service"
 DATA_PATH="${EMD_HOME}/data"
 RPC_ADDRESS="https://odin-rpc.polkachu.com:443"
 RPC_SERVERS="https://odin.rpc.m.stavr.tech:443,https://rpc.odinprotocol.io:443,https://odin-rpc.lavenderfive.com:443,https://odin-mainnet-rpc.autostake.com:443"
-SNAPSHOT_DIR="$HOME/snapshots/logs"
-LOG_PATH="${SNAPSHOT_DIR}/state_sync/odin_log.txt"
+LOG_PATH="/home/ubuntu/snapshots/mainnet/logs/state_sync/odin_log.txt"
+
 mkdir -p $(dirname ${LOG_PATH})
 
 # Helper function to get current date in a specific format
