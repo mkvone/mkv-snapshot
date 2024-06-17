@@ -16,4 +16,4 @@ sudo docker build -t osmosis_cosmprund .
 # sudo docker run --name cosmprund
 # sudo docker run cosmprund prune ~/.kid/data
 # sudo docker run -v ~/.kid/data:/.kid/data cosmprund prune .kid/data
-sudo docker run -v ~/.osmosisd/data:/.osmosisd/data osmosis_cosmprund prune .osmosisd/data
+# sudo docker run -v ~/.osmosisd/data:/.osmosisd/data osmosis_cosmprund prune .osmosisd/data
