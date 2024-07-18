@@ -1,11 +1,18 @@
-sudo systemctl stop kids
-rm -rf ~/.kid/sentry1/data/*
+DAEMON=sentry-kid
+CHAIN=kichain
+SNAP_PATH=$HOME/.sentry/.kid
 SNAP_URL="https://snapshots.mkv.one/mainnet"
-SNAP_NAME=$(curl -s ${SNAP_URL}/kichain/ | \
-    awk -F'"' '/href=".*kichain.*\.tar\.lz4"/ {print $2}' | \
+
+
+sudo systemctl stop ${DAEMON}
+rm -rf $SNAP_PATH/data/*
+
+SNAP_NAME=$(curl -s ${SNAP_URL}/${CHAIN}/ | \
+    awk -F'"' '/href=".*${CHAIN}.*\.tar\.lz4"/ {print $2}' | \
     sed 's/^\.\///' | \
     sort -t_ -k2 | \
     tail -n 1)
-curl -o - -L ${SNAP_URL}/kichain/${SNAP_NAME} | lz4 -c -d - | tar -x -C $HOME/.kid/sentry1
 
-sudo systemctl start kids
+curl -o - -L ${SNAP_URL}/${CHAIN}/${SNAP_NAME} | lz4 -c -d - | tar -x -C $SNAP_PATH
+
+sudo systemctl start ${DAEMON}

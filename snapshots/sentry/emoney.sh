@@ -1,12 +1,18 @@
-sudo systemctl stop emoney
-rm -rf ~/.emd/sentry1/data/*
+DAEMON=sentry-emoney
+CHAIN=emoney
+SNAP_PATH=$HOME/.sentry/.emd
 SNAP_URL="https://snapshots.mkv.one/mainnet"
-SNAP_NAME=$(curl -s ${SNAP_URL}/emoney/ | \
-    awk -F'"' '/href=".*emoney.*\.tar\.lz4"/ {print $2}' | \
+
+
+sudo systemctl stop ${DAEMON}
+rm -rf $SNAP_PATH/data/*
+
+SNAP_NAME=$(curl -s ${SNAP_URL}/${CHAIN}/ | \
+    awk -F'"' '/href=".*${CHAIN}.*\.tar\.lz4"/ {print $2}' | \
     sed 's/^\.\///' | \
     sort -t_ -k2 | \
     tail -n 1)
 
-curl -o - -L ${SNAP_URL}/emoney/${SNAP_NAME} | lz4 -c -d - | tar -x -C $HOME/.emd/sentry1
+curl -o - -L ${SNAP_URL}/${CHAIN}/${SNAP_NAME} | lz4 -c -d - | tar -x -C $SNAP_PATH
 
-sudo systemctl start emoney
+sudo systemctl start ${DAEMON}
