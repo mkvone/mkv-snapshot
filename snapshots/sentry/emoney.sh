@@ -12,6 +12,6 @@ SNAP_NAME=$(curl -s ${SNAP_URL}/${CHAIN}/ | \
 wget -O ${SNAP_PATH}/${SNAP_NAME} ${SNAP_URL}/${CHAIN}/${SNAP_NAME}
 sudo systemctl stop ${DAEMON}
 rm -rf $SNAP_PATH/data/*
-tar -xvf ${SNAP_PATH}/${SNAP_NAME} -C $SNAP_PATH
+lz4 -c -d ${SNAP_PATH}/${SNAP_NAME} | tar -x -C $SNAP_PATH
 # curl -o - -L ${SNAP_URL}/${CHAIN}/${SNAP_NAME} | lz4 -c -d - | tar -x -C $SNAP_PATH
 sudo systemctl start ${DAEMON}
