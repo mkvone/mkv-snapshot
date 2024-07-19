@@ -6,7 +6,7 @@ SERVICE_NAME="sentry-kid.service"
 RPC_ADDRESS="http://localhost:20357"
 CHAIN_NAME="kichain"
 
-DATA_PATH="PARENT_DIR/data/"
+DATA_PATH="${PARENT_DIR}/data/"
 SNAPSHOT_DIR="${DATA_PATH}snapshots"
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
 LOG_PATH="${SNAPSHOT_DIR}/logs/cosmprund/${CHAIN_NAME}_log.txt"
