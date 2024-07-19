@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configuration variables
-EMD_HOME="$HOME/.validator/.odin"
+EMD_HOME="$HOME/.validator/.odind"
 CONFIG_PATH="${EMD_HOME}/config"
 SERVICE_NAME="validator-odin.service"
 DATA_PATH="${EMD_HOME}/data"

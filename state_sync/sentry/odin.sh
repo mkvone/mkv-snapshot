@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configuration variables
-EMD_HOME="$HOME/.sentry/.odin"
+EMD_HOME="$HOME/.sentry/.odind"
 CONFIG_PATH="${EMD_HOME}/config"
 SERVICE_NAME="sentry-odin.service"
 DATA_PATH="${EMD_HOME}/data"
