@@ -9,7 +9,7 @@ CHAIN_NAME="osmosis"
 DATA_PATH="${PARENT_DIR}/data/"
 SNAPSHOT_DIR="${DATA_PATH}snapshots"
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
-LOG_PATH="${SNAPSHOT_DIR}/logs/cosmprund/${CHAIN_NAME}_log.txt"
+LOG_PATH="${HOME}/snapshots/logs/cosmprund/${CHAIN_NAME}_log.txt"
 mkdir -p $(dirname ${LOG_PATH}) 
 
 now_date() {
