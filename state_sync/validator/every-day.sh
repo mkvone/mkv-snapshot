@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the directory where your scripts are located
-SCRIPT_DIR="$HOME/mkv-snapshot/state_sync/sentry"
+SCRIPT_DIR="$HOME/mkv-snapshot/state_sync/validator"
 
 # Change directory
 cd "$SCRIPT_DIR" || exit

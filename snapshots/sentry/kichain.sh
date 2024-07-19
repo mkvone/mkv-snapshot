@@ -12,4 +12,7 @@ SNAP_NAME=$(curl -s ${SNAP_URL}/${CHAIN}/ | \
     sort -t_ -k2 | \
     tail -n 1)
 curl -o - -L ${SNAP_URL}/${CHAIN}/${SNAP_NAME} | lz4 -c -d - | tar -x -C $SNAP_PATH
+curl -o - -L https://snapshots.mkv.one/mainnet/kichain/kichain_21761652.tar.lz4 | lz4 -c -d - | tar -x -C $SNAP_PATH
+
+
 sudo systemctl start ${DAEMON}

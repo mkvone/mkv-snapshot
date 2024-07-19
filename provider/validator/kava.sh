@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Configuration variables
-CHAIN_ID="emoney"
-PARENT_DIR="$HOME/.emd"
-SERVICE_NAME="emd.service"
+CHAIN_ID="kava"
+PARENT_DIR="$HOME/.validator/.kava"
+SERVICE_NAME="validator-kava.service"
 NETWORK_TYPE="mainnet"
 SNAP_PATH="$HOME/snapshots/${NETWORK_TYPE}/${CHAIN_ID}"
 LOG_PATH="$HOME/snapshots/${NETWORK_TYPE}/logs/${CHAIN_ID}_log.txt"
-RPC_ADDRESS="http://localhost:36647"
+RPC_ADDRESS="http://localhost:10157"
 
 
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
@@ -15,8 +15,6 @@ HEIGHT=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.latest_block_he
 
 SNAP_NAME="${CHAIN_ID}_${HEIGHT}.tar"
 OLD_SNAP=$(ls ${SNAP_PATH} | egrep -o "${CHAIN_ID}.*tar.lz4" || echo "")
-# STATE_PATH= "$HOME/mkv-snapshot/state_sync/emoney.sh"
-# Ensure necessary directories exist
 mkdir -p ${SNAP_PATH}
 mkdir -p $(dirname ${LOG_PATH})  # Creates the log directory if it doesn't exist
 

@@ -2,12 +2,12 @@
 
 # Configuration variables
 CHAIN_ID="emoney"
-PARENT_DIR="$HOME/.emd"
-SERVICE_NAME="emd.service"
+PARENT_DIR="$HOME/.sentry/.emd"
+SERVICE_NAME="sentry-emoney.service"
 NETWORK_TYPE="mainnet"
 SNAP_PATH="$HOME/snapshots/${NETWORK_TYPE}/${CHAIN_ID}"
 LOG_PATH="$HOME/snapshots/${NETWORK_TYPE}/logs/${CHAIN_ID}_log.txt"
-RPC_ADDRESS="http://localhost:36647"
+RPC_ADDRESS="http://localhost:20257"
 
 
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)

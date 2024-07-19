@@ -1,23 +1,20 @@
 #!/bin/bash
 
 # Configuration variables
-
-SNAP_PATH="/home/ubuntu/snapshots/mainnet/odin"
-LOG_PATH="/home/ubuntu/snapshots/mainnet/logs/odin_log.txt"
-DATA_PATH="/home/ubuntu/.odin/data/"
-PARENT_DIR="/home/ubuntu/.odin" 
-DATA_DIR_NAME="data" 
+CHAIN_ID="odin"
+PARENT_DIR="$HOME/.odin"
 SERVICE_NAME="odin.service"
+NETWORK_TYPE="mainnet"
+SNAP_PATH="$HOME/snapshots/${NETWORK_TYPE}/${CHAIN_ID}"
+LOG_PATH="$HOME/snapshots/${NETWORK_TYPE}/logs/${CHAIN_ID}_log.txt"
 RPC_ADDRESS="http://localhost:26657"
 
-# Check if the node is fully synced
+
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
 HEIGHT=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.latest_block_height)
-CHAIN_ID="odin"
+
 SNAP_NAME="${CHAIN_ID}_${HEIGHT}.tar"
 OLD_SNAP=$(ls ${SNAP_PATH} | egrep -o "${CHAIN_ID}.*tar.lz4" || echo "")
-# STATE_PATH= "/home/ubuntu/mkv-snapshot/state_sync/emoney.sh"
-# Ensure necessary directories exist
 mkdir -p ${SNAP_PATH}
 mkdir -p $(dirname ${LOG_PATH})  # Creates the log directory if it doesn't exist
 
@@ -43,7 +40,7 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     echo $? >> ${LOG_PATH}
 
     log_this "Creating new snapshot"
-    tar -cf ${HOME}/${SNAP_NAME} -C ${PARENT_DIR} ${DATA_DIR_NAME}
+    tar -cf ${HOME}/${SNAP_NAME} -C ${PARENT_DIR} data
     lz4 ${HOME}/${SNAP_NAME} ${HOME}/${SNAP_NAME}.lz4
     rm ${HOME}/${SNAP_NAME}  # Clean up the uncompressed tar file
     log_this "Snapshot compressed with lz4."

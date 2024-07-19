@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # Define the directory where your scripts are located
-SCRIPT_DIR="$HOME/mkv-snapshot/state_sync/sentry"
+SCRIPT_DIR="$HOME/mkv-snapshot/cosmprund/validator"
 
 # Change directory
 cd "$SCRIPT_DIR" || exit
 
 # List of scripts to run
 SCRIPTS=(
-    # "emoney.sh"
-    # "kava.sh"
-    # "kichain.sh"
-    "odin.sh"
+    "emoney.sh"
+    "kava.sh"
+    "kichain.sh"
+    # "odin.sh"
 )
 
 # Loop through each script and execute it

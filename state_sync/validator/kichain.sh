@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # Configuration variables
-EMD_HOME="$HOME/.sentry/.emd"
-SERVICE_NAME="sentry-emoney.service"
-
+EMD_HOME="$HOME/.validator/.kid"
 CONFIG_PATH="${EMD_HOME}/config"
-ADDRBOOK_JSON="${CONFIG_PATH}/addrbook.json"
+SERVICE_NAME="validator-kid.service"
 DATA_PATH="${EMD_HOME}/data"
-RPC_ADDRESS="https://emoney.validator.network:443"
-RPC_SERVERS="https://emoney.validator.network:443,https://rpc-emoney.mkv.one:443,https://rpc-emoney-ia.cosmosia.notional.ventures:443"
-LOG_PATH="/home/ubuntu/snapshots/mainnet/logs/state_sync/emoney_log.txt"
+
+RPC_ADDRESS="https://rpc.kichain.chaintools.tech:443"
+RPC_SERVERS="https://kichain-rpc.polkachu.com:443,https://rpc-mainnet.blockchain.ki:443,https://kichain-rpc.polkachu.com:443,https://rpc-kichain-ia.cosmosia.notional.ventures:443,https://kichain-mainnet-rpc.autostake.com:443,https://kichain-rpc.lavenderfive.com:443"
+LOG_PATH="/home/ubuntu/snapshots/mainnet/logs/state_sync/kid_log.txt"
+
 mkdir -p $(dirname ${LOG_PATH})
 
 # Helper function to get current date in a specific format
@@ -36,14 +36,13 @@ rm -rf ${DATA_PATH}/*
 mv ${EMD_HOME}/priv_validator_state.json.bak ${DATA_PATH}/priv_validator_state.json
 
 LATEST_HEIGHT=$(curl -s $RPC_ADDRESS/block | jq -r .result.block.header.height)
-BLOCK_HEIGHT=$((LATEST_HEIGHT - 500))
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 1000))
 TRUST_HASH=$(curl -s "$RPC_ADDRESS/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
 
 sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$RPC_SERVERS,$RPC_SERVERS\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" ${CONFIG_PATH}/config.toml
-
 
 log_this "Starting ${SERVICE_NAME}"
 sudo systemctl start ${SERVICE_NAME}

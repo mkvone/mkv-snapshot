@@ -1,16 +1,17 @@
 #!/bin/bash
 
 # Configuration variables
-DATA_PATH="/home/ubuntu/.kava/data/"
+PARENT_DIR="${HOME}/.validator/.emd"
+SERVICE_NAME="validator-emoney.service"
+RPC_ADDRESS="http://localhost:10257"
+CHAIN_NAME="emoney"
+
+DATA_PATH="PARENT_DIR/data/"
 SNAPSHOT_DIR="${DATA_PATH}snapshots"
-PARENT_DIR="/home/ubuntu/.kava" 
-DATA_DIR_NAME="data" 
-SERVICE_NAME="kava.service"
-RPC_ADDRESS="http://localhost:36657"
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
-A=whoami
-LOG_PATH="/home/ubuntu/snapshots/mainnet/logs/state_sync/kava_log.txt"
+LOG_PATH="${SNAPSHOT_DIR}/logs/cosmprund/${CHAIN_NAME}_log.txt"
 mkdir -p $(dirname ${LOG_PATH}) 
+
 now_date() {
     echo -n $(TZ=":Europe/Moscow" date '+%Y-%m-%d_%H:%M:%S')
 }
@@ -42,14 +43,10 @@ if [[ "$CATCHING_UP" == "false" ]]; then
 
 
     log_this "Cleaning up snapshot directories that are numerically named"
-    CLEANUP_OUTPUT=$(find ${SNAPSHOT_DIR} -maxdepth 1 -type d -regex ".*/[0-9]+" -exec rm -rv {} + 2>&1)
-    log_this "${CLEANUP_OUTPUT}"
-    log_this "Numerical directories cleanup complete"
     sudo chown -R $(whoami):$(whoami) ${DATA_PATH}
     rm -rf ${DATA_PATH}tx_index.db
-
-
-    log_this "Starting ${SERVICE_NAME}"
+    rm -rf ${DATA_PATH}snapshots
+    
     sudo systemctl start ${SERVICE_NAME}
     SERVICE_START_STATUS=$?
     log_this "Service start status: $SERVICE_START_STATUS"

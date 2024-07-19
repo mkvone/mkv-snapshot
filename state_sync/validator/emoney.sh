@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Configuration variables
-EMD_HOME="$HOME/.sentry/.emd"
-SERVICE_NAME="sentry-emoney.service"
+EMD_HOME="$HOME/.validator/.emd"
+SERVICE_NAME="validator-emoney.service"
 
 CONFIG_PATH="${EMD_HOME}/config"
 ADDRBOOK_JSON="${CONFIG_PATH}/addrbook.json"
