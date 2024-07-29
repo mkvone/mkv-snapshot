@@ -1,6 +1,6 @@
 DAEMON=sentry-osmosisd
 CHAIN=osmosis
-SNAP_PATH=$HOME/.sentry/.osmosisdd
+SNAP_PATH=$HOME/.sentry/.osmosisd
 SNAP_URL="https://snapshots.mkv.one/mainnet"
 
 SNAP_NAME=$(curl -s ${SNAP_URL}/${CHAIN}/ | \
