@@ -12,6 +12,7 @@ SCRIPTS=(
     "kava.sh"
     # "kichain.sh"
     "odin.sh"
+    "osmosis.sh"
     # "testodin.sh"
 )
 
