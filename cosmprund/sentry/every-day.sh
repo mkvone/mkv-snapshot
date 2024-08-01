@@ -22,6 +22,9 @@ for script in "${SCRIPTS[@]}"; do
         echo "Executing $script..."
         bash "$script"
         echo "Finished executing $script."
+        # Tiem sleep 5 minutes
+        sleep 5m
+
     else
         echo "Error: Script $script not found."
     fi
