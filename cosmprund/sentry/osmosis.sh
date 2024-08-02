@@ -41,10 +41,7 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     log_this "Docker containers pruned"
 
 
-    log_this "Cleaning up snapshot directories that are numerically named"
-    CLEANUP_OUTPUT=$(find ${SNAPSHOT_DIR} -maxdepth 1 -type d -regex ".*/[0-9]+" -exec rm -rv {} + 2>&1)
-    log_this "${CLEANUP_OUTPUT}"
-    log_this "Numerical directories cleanup complete"
+    
     sudo chown -R $(whoami):$(whoami) ${DATA_PATH}
     rm -rf ${DATA_PATH}tx_index.db
     rm -rf ${DATA_PATH}snapshots
