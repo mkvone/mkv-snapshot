@@ -58,7 +58,7 @@ if [[ "$CATCHING_UP" == "false" ]]; then
             log_this "Cleaning up old snapshots, keeping the latest two:"
             cd ${SNAP_PATH}
             # List all snapshot files, sort them by modification time, skip the last two files, and remove the rest
-            ls -t ${SNAP_PATH}/${CHAIN_ID}*.tar.lz4 | tail -n +3 | xargs -I {} rm -fv {} &>> ${LOG_PATH}
+            ls -t ${SNAP_PATH}/${CHAIN_ID}*.tar.lz4 | tail -n +2 | xargs -I {} rm -fv {} &>> ${LOG_PATH}
         fi
     else
         log_this "Failed to move new snapshot."
