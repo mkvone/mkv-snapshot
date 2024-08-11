@@ -30,14 +30,13 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     SERVICE_STOP_STATUS=$?
     log_this "Service stop status: $SERVICE_STOP_STATUS"
 
-    cp -r ${DATA_PATH} ${PARENT_DIR}/data_bak
     log_this "Starting ${SERVICE_NAME}"
     sudo systemctl start ${SERVICE_NAME}
 
 
     log_this "Pruning data"
     # PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}:${DATA_PATH} osmosis_cosmprund prune ${DATA_PATH} 2>&1)
-    PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}/data_bak:${DATA_PATH} osmosis_cosmprund prune ${DATA_PATH} 2>&1)
+    PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}:${DATA_PATH} osmosis_cosmprund prune ${DATA_PATH} 2>&1)
     log_this "$PRUNE_OUTPUT"
     log_this "Finish pruning"
     
@@ -46,10 +45,6 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     log_this "${DOCKER_PRUNE_OUTPUT}"
     log_this "Docker containers pruned"
 
-    log_this "Stopping ${SERVICE_NAME}"
-    sudo systemctl stop ${SERVICE_NAME}
-    rm -rf ${DATA_PATH}
-    mv ${PARENT_DIR}/data_bak ${DATA_PATH}
     
     sudo chown -R $(whoami):$(whoami) ${DATA_PATH}
     rm -rf ${DATA_PATH}tx_index.db
