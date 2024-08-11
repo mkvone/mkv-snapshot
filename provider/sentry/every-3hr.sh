@@ -10,10 +10,7 @@ cd "$SCRIPT_DIR" || exit
 SCRIPTS=(
     "emoney.sh"
     "kava.sh"
-    # "kichain.sh"
     "odin.sh"
-    "osmosis.sh"
-    # "testodin.sh"
 )
 
 # Loop through each script and execute it
