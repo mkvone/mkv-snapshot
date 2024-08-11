@@ -30,10 +30,6 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     SERVICE_STOP_STATUS=$?
     log_this "Service stop status: $SERVICE_STOP_STATUS"
 
-    log_this "Starting ${SERVICE_NAME}"
-    sudo systemctl start ${SERVICE_NAME}
-
-
     log_this "Pruning data"
     # PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}:${DATA_PATH} osmosis_cosmprund prune ${DATA_PATH} 2>&1)
     PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}:${DATA_PATH} osmosis_cosmprund prune ${DATA_PATH} 2>&1)

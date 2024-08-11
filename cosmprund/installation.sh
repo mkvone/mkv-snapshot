@@ -10,6 +10,7 @@ cd $HOME
 git clone https://github.com/czarcas7ic/cosmprund osmosis_cosmprund
 cd osmosis_cosmprund
 sudo docker build -t osmosis_cosmprund .
+# git clone https://github.com/osmosis-labs/cosmprund osmosis_cosmprund_test
 
 
 # cd $HOME 
