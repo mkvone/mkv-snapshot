@@ -7,7 +7,7 @@ SERVICE_NAME="sentry-allorad.service"
 DATA_PATH="${EMD_HOME}/data"
 
 RPC_ADDRESS="https://allora-testnet-rpc.polkachu.com:443"
-RPC_SERVERS="https://allora-testnet-rpc.polkachu.com:443,https://allora-rpc.testnet.allora.network:443,https://allora-testnet-rpc.itrocket.net"
+RPC_SERVERS="https://allora-testnet-rpc.polkachu.com:443,https://allora-rpc.testnet.allora.network:443,https://allora-testnet-rpc.itrocket.net:443"
 LOG_PATH="/home/ubuntu/snapshots/mainnet/logs/state_sync/allorad_log.txt"
 
 mkdir -p $(dirname ${LOG_PATH})
