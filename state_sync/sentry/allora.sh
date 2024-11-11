@@ -6,8 +6,8 @@ CONFIG_PATH="${EMD_HOME}/config"
 SERVICE_NAME="sentry-allorad.service"
 DATA_PATH="${EMD_HOME}/data"
 
-RPC_ADDRESS="http://88.198.70.23:26757"
-RPC_SERVERS="http://88.198.70.23:26757,http://162.55.65.137:26757,http://51.81.109.67:26657,http://135.181.65.94:45657,http://34.85.251.36:26657,http://35.245.78.162:26657,http://34.69.129.28:26657,http://65.21.16.237:26657,http://35.217.49.11:26657,http://135.181.10.62:26657,http://162.55.245.254:30657,http://65.108.8.250:30657,http://103.88.234.61:26657,http://176.9.44.125:26657,http://185.144.99.11:46657,http://65.108.29.234:27657,http://45.92.11.222:26657,http://91.108.227.176:26657,http://40.160.12.223:26657,http://65.21.102.153:17657,http://116.202.211.111:26657,http://142.132.180.52:26657,http://15.204.101.153:26657,http://15.204.101.154:26657,http://144.76.90.14:26657,http://80.66.81.169:26657,http://168.119.38.47:26657,http://80.66.89.81:26657,http://80.66.85.98:26657"
+RPC_ADDRESS="https://allora-testnet-rpc.polkachu.com:443"
+RPC_SERVERS="https://allora-testnet-rpc.polkachu.com:443,https://allora-rpc.testnet.allora.network:443,https://allora-testnet-rpc.itrocket.net"
 LOG_PATH="/home/ubuntu/snapshots/mainnet/logs/state_sync/allorad_log.txt"
 
 mkdir -p $(dirname ${LOG_PATH})
