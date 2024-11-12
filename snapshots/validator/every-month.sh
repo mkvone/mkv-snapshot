@@ -12,6 +12,7 @@ SCRIPTS=(
     "kava.sh"
     # "odin.sh"
     # "kichain.sh"
+    "allora.sh"
 )
 
 # Loop through each script and execute it

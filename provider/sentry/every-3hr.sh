@@ -11,6 +11,7 @@ SCRIPTS=(
     "emoney.sh"
     "kava.sh"
     # "odin.sh"
+    "allora.sh"
 )
 
 # Loop through each script and execute it
