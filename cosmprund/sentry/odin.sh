@@ -3,7 +3,7 @@
 # Configuration variables
 PARENT_DIR="${HOME}/.sentry/.odind"
 SERVICE_NAME="sentry-odin.service"
-RPC_ADDRESS="http://localhost:20557"
+RPC_ADDRESS="http://localhost:20057"
 CHAIN_NAME="odin"
 
 DATA_PATH="${PARENT_DIR}/data/"
