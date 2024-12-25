@@ -32,7 +32,7 @@ if [[ "$CATCHING_UP" == "false" ]]; then
 
     log_this "Pruning data"
     # PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}:${DATA_PATH} osmosis_cosmprund prune ${DATA_PATH} 2>&1)
-    PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}:${DATA_PATH} osmosis_cosmprund prune ${DATA_PATH} 2>&1)
+    PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}:${DATA_PATH} osmosis_cosmprund prune ${DATA_PATH} --cosmos-sdk=false 2>&1)
     log_this "$PRUNE_OUTPUT"
     log_this "Finish pruning"
     

@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Configuration variables
-PARENT_DIR="${HOME}/.validator/.emd"
-SERVICE_NAME="validator-emoney.service"
-RPC_ADDRESS="http://localhost:10257"
-CHAIN_NAME="emoney"
+PARENT_DIR="${HOME}/.sentry/.odind"
+SERVICE_NAME="sentry-odin.service"
+RPC_ADDRESS="http://localhost:20557"
+CHAIN_NAME="odin"
 
 DATA_PATH="${PARENT_DIR}/data/"
 SNAPSHOT_DIR="${DATA_PATH}snapshots"
