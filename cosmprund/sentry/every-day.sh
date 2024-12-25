@@ -12,7 +12,7 @@ SCRIPTS=(
     "kava.sh"
     "osmosis.sh"
     # "kichain.sh"
-    # "odin.sh"
+    "odin.sh"
 )
 
 # Loop through each script and execute it
