@@ -13,6 +13,7 @@ SCRIPTS=(
     "osmosis.sh"
     # "kichain.sh"
     "odin.sh"
+    "allorad.sh"
 )
 
 # Loop through each script and execute it
