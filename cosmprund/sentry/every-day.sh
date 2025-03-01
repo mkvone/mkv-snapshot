@@ -8,12 +8,13 @@ cd "$SCRIPT_DIR" || exit
 
 # List of scripts to run
 SCRIPTS=(
-    "emoney.sh"
+    #"emoney.sh"
     "kava.sh"
-    "osmosis.sh"
+    #"osmosis.sh"
     # "kichain.sh"
     "odin.sh"
     "allorad.sh"
+    "kyve.sh"
 )
 
 # Loop through each script and execute it
