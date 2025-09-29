@@ -6,7 +6,7 @@ SNAPSHOT_DIR="${DATA_PATH}snapshots"
 PARENT_DIR="/home/ubuntu/.odin" 
 DATA_DIR_NAME="data" 
 SERVICE_NAME="odin.service"
-RPC_ADDRESS="http://localhost:26657"
+RPC_ADDRESS="http://localhost:10057"
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
 
 
