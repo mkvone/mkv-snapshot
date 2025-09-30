@@ -8,7 +8,7 @@ cd "$SCRIPT_DIR" || exit
 
 # List of scripts to run
 SCRIPTS=(
-    "emoney.sh"
+    "kyve.sh"
     "kava.sh"
     # "kichain.sh"
     "odin.sh"

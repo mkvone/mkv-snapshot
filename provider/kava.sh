@@ -7,7 +7,7 @@ SERVICE_NAME="kava.service"
 NETWORK_TYPE="mainnet"
 SNAP_PATH="$HOME/snapshots/${NETWORK_TYPE}/${CHAIN_ID}"
 LOG_PATH="$HOME/snapshots/${NETWORK_TYPE}/logs/${CHAIN_ID}_log.txt"
-RPC_ADDRESS="http://localhost:36657"
+RPC_ADDRESS="http://localhost:10157"
 
 
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)

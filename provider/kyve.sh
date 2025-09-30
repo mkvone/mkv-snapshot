@@ -1,13 +1,14 @@
 #!/bin/bash
 
 # Configuration variables
-CHAIN_ID="odin"
-PARENT_DIR="$HOME/.odin"
-SERVICE_NAME="odin.service"
+CHAIN_ID="kyve"
+PARENT_DIR="$HOME/.kyve"
+SERVICE_NAME="kyve.service"
 NETWORK_TYPE="mainnet"
 SNAP_PATH="$HOME/snapshots/${NETWORK_TYPE}/${CHAIN_ID}"
 LOG_PATH="$HOME/snapshots/${NETWORK_TYPE}/logs/${CHAIN_ID}_log.txt"
-RPC_ADDRESS="http://localhost:10057"
+RPC_ADDRESS="http://localhost:10757"
+
 
 
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
