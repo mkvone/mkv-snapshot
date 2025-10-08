@@ -1,16 +1,17 @@
 #!/bin/bash
 
 # Configuration variables
-DATA_PATH="/home/ubuntu/.kava/data/"
-SNAPSHOT_DIR="${DATA_PATH}snapshots"
-PARENT_DIR="/home/ubuntu/.kava" 
-DATA_DIR_NAME="data" 
+PARENT_DIR="${HOME}/.kava"
 SERVICE_NAME="kava.service"
 RPC_ADDRESS="http://localhost:10157"
+CHAIN_NAME="kava"
+
+DATA_PATH="${PARENT_DIR}/data/"
+SNAPSHOT_DIR="${DATA_PATH}snapshots"
 CATCHING_UP=$(curl -s ${RPC_ADDRESS}/status | jq -r .result.sync_info.catching_up)
-A=whoami
-LOG_PATH="/home/ubuntu/snapshots/logs/cosmprund/kava_log.txt"
+LOG_PATH="${HOME}/snapshots/logs/cosmprund/${CHAIN_NAME}_log.txt"
 mkdir -p $(dirname ${LOG_PATH}) 
+
 now_date() {
     echo -n $(TZ=":Europe/Moscow" date '+%Y-%m-%d_%H:%M:%S')
 }
@@ -31,7 +32,7 @@ if [[ "$CATCHING_UP" == "false" ]]; then
     log_this "Service stop status: $SERVICE_STOP_STATUS"
 
     log_this "Pruning data"
-    PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}:${DATA_PATH} cosmprund prune ${DATA_PATH} 2>&1)
+    PRUNE_OUTPUT=$(sudo docker run -v ${DATA_PATH}:${DATA_PATH} cosmprund prune ${DATA_PATH} --cosmos-sdk=false 2>&1)
     log_this "$PRUNE_OUTPUT"
     log_this "Finish pruning"
     
@@ -42,14 +43,10 @@ if [[ "$CATCHING_UP" == "false" ]]; then
 
 
     log_this "Cleaning up snapshot directories that are numerically named"
-    CLEANUP_OUTPUT=$(find ${SNAPSHOT_DIR} -maxdepth 1 -type d -regex ".*/[0-9]+" -exec rm -rv {} + 2>&1)
-    log_this "${CLEANUP_OUTPUT}"
-    log_this "Numerical directories cleanup complete"
     sudo chown -R $(whoami):$(whoami) ${DATA_PATH}
     rm -rf ${DATA_PATH}tx_index.db
-
-
-    log_this "Starting ${SERVICE_NAME}"
+    rm -rf ${DATA_PATH}snapshots
+    
     sudo systemctl start ${SERVICE_NAME}
     SERVICE_START_STATUS=$?
     log_this "Service start status: $SERVICE_START_STATUS"
